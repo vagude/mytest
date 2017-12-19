@@ -30,22 +30,26 @@ public class SampleResource {
     }
 
     @RequestMapping("/test")
-    public Map<String, String> test() {
-    		Map<String, String> map = new HashMap<String, String>();
+    public Map<String, Object> test() {
+    		Map<String, Object> map = new HashMap<String, Object>();
     		map.put("message", "Hello World");
     		map.put("date", new Date().toString());
     		
-    		map.put("mongodb.host", System.getenv("MONGODB_SERVICE_HOST"));
-    		map.put("mongodb.port", System.getenv("MONGODB_SERVICE_PORT"));
-    		map.put("mongodb.username", System.getenv("MONGODB_USERNAME"));
-    		map.put("mongodb.password", System.getenv("MONGODB_PASSWORD"));
-    		map.put("mongodb.database", System.getenv("MONGODB_DATABASE"));
+    		Map<String, String> mongomap = new HashMap<String, String>();
+    		mongomap.put("mongodb.host", System.getenv("MONGODB_SERVICE_HOST"));
+    		mongomap.put("mongodb.port", System.getenv("MONGODB_SERVICE_PORT"));
+    		mongomap.put("mongodb.username", System.getenv("MONGODB_USERNAME"));
+    		mongomap.put("mongodb.password", System.getenv("MONGODB_PASSWORD"));
+    		mongomap.put("mongodb.database", System.getenv("MONGODB_DATABASE"));
+    		map.put("mongo", mongomap);
     		
-    		map.put("mysql.host", System.getenv("MARIADB_SERVICE_HOST"));
-    		map.put("mysql.port", System.getenv("MARIADB_SERVICE_PORT"));
-    		map.put("mysql.database", System.getenv("MARIADB_DATABASE"));
-    		map.put("mysql.username", System.getenv("MARIADB_USERNAME"));
-    		map.put("mysql.password", System.getenv("MARIADB_PASSWORD"));
+    		Map<String, String> mysqlmap = new HashMap<String, String>();
+    		mysqlmap.put("mysql.host", System.getenv("MARIADB_SERVICE_HOST"));
+    		mysqlmap.put("mysql.port", System.getenv("MARIADB_SERVICE_PORT"));
+    		mysqlmap.put("mysql.database", System.getenv("MARIADB_DATABASE"));
+    		mysqlmap.put("mysql.username", System.getenv("MARIADB_USERNAME"));
+    		mysqlmap.put("mysql.password", System.getenv("MARIADB_PASSWORD"));
+    		map.put("mysql", mysqlmap);
     		
     		System.out.println("******* Map: "+map);
     		
