@@ -34,11 +34,18 @@ public class SampleResource {
     		Map<String, String> map = new HashMap<String, String>();
     		map.put("message", "Hello World");
     		map.put("date", new Date().toString());
+    		
     		map.put("mongodb.host", System.getenv("MONGODB_SERVICE_HOST"));
     		map.put("mongodb.port", System.getenv("MONGODB_SERVICE_PORT"));
     		map.put("mongodb.username", System.getenv("MONGODB_USERNAME"));
     		map.put("mongodb.password", System.getenv("MONGODB_PASSWORD"));
     		map.put("mongodb.database", System.getenv("MONGODB_DATABASE"));
+    		
+    		map.put("mysql.host", System.getenv("MARIADB_SERVICE_HOST"));
+    		map.put("mysql.port", System.getenv("MARIADB_SERVICE_PORT"));
+    		map.put("mysql.database", System.getenv("MARIADB_DATABASE"));
+    		map.put("mysql.username", System.getenv("MARIADB_USERNAME"));
+    		map.put("mysql.password", System.getenv("MARIADB_PASSWORD"));
     		
     		System.out.println("******* Map: "+map);
     		
