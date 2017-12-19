@@ -3,6 +3,7 @@ package com.test.openshiftspringtest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.test.openshiftspringtest.mongo.Employee;
 import com.test.openshiftspringtest.mongo.EmployeeRepository;
+import com.test.openshiftspringtest.mysql.Student;
+import com.test.openshiftspringtest.mysql.StudentRepository;
 
 @RestController
 public class SampleResource {
 	
 	@Autowired
-	private EmployeeRepository empRepo;
+	private EmployeeRepository empMongoRepo;
+	
+	@Autowired
+	private StudentRepository stuMySqlRepo;
 
     @RequestMapping("/")
     public String hello() {
@@ -39,15 +45,26 @@ public class SampleResource {
         return map;
     }
     
-    @RequestMapping("/save")
+    @RequestMapping("/save/mongo")
     public String saveEmployee() {
     		Employee emp = new Employee();
     		emp.setId(UUID.randomUUID().toString());
     		emp.setName("Vamsi");
     		emp.setAddress("San Jose");
-    		empRepo.save(emp);
+    		empMongoRepo.save(emp);
     		System.out.println("Success ...");
     		
-        return "Saved Successfully";
+        return "Saved Successfully to Mongo";
+    }
+    
+    @RequestMapping("/save/mysql")
+    public String saveStudent() {
+    		Student st = new Student();
+    		st.setName("Vamsi "+new Random().nextInt(100));
+    		st.setAddress("San Jose");
+    		stuMySqlRepo.save(st);
+    		System.out.println("Success ...");
+    		
+        return "Saved Successfully to MySQL";
     }
 }
