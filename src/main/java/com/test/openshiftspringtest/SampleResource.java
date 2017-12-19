@@ -20,6 +20,11 @@ public class SampleResource {
     		Map<String, String> map = new HashMap<String, String>();
     		map.put("message", "Hello World");
     		map.put("date", new Date().toString());
+    		map.put("mongodb.url", System.getenv("OPENSHIFT_MONGODB_DB_URL"));
+    		map.put("mongodb.host", System.getenv("OPENSHIFT_MONGODB_DB_HOST"));
+    		map.put("mongodb.port", System.getenv("OPENSHIFT_MONGODB_DB_PORT"));
+    		map.put("mongodb.username", System.getenv("OPENSHIFT_MONGODB_DB_USERNAME"));
+    		map.put("mongodb.password", System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD"));
     		
     		System.out.println("******* Map: "+map);
     		
